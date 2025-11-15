@@ -101,14 +101,15 @@
       </div>
     </section>
 
-    <!-- NEW: Program Terms & Policies section -->
+    <!-- Program Terms & Policies section -->
     <section>
       <div class="card">
         <h2>Program Terms &amp; Policies</h2>
         <p>For full details on data handling, user rights, and messaging practices, please review the documents below:</p>
         <div class="linkrow">
-          <a class="btnlink" href="https://willcoburn.github.io/remind-site/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-          <a class="btnlink" href="https://willcoburn.github.io/remind-site/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+          <!-- ✅ use relative links so they work under /remind-site/ -->
+          <a class="btnlink" href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          <a class="btnlink" href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
         </div>
         <p class="muted">These links are the same documents referenced inside the ReMind app during onboarding.</p>
       </div>
@@ -120,9 +121,10 @@
       <div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center;">
         <span>&copy; <span id="y"></span> ReMind</span>
         <span aria-hidden="true">·</span>
-        <a href="https://willcoburn.github.io/remind-site/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <!-- ✅ also switch footer links to relative -->
+        <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         <span aria-hidden="true">·</span>
-        <a href="https://willcoburn.github.io/remind-site/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+        <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
       </div>
     </div>
     <script>
