@@ -1,409 +1,314 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>BrainMail – Support & Messaging Information</title>
-  <meta name="description" content="BrainMail is a self-reflection app that lets users save personal entries and receive their own saved thoughts back by text message." />
+  <title>BrainMail</title>
 
   <style>
     :root {
-      --brand: #3f4bb8;
-      --brand-soft: #eef1ff;
-      --text: #111827;
-      --muted: #5f6472;
-      --border: #e6e8f0;
-      --bg: #f7f9ff;
-      --card: rgba(255,255,255,0.92);
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1c1c1e;
+      --subtext: #6b7280;
+      --blue: #4a56d4;
+      --border: #e5e7eb;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.65;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        sans-serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at 10% 20%, rgba(255, 225, 245, 0.7), transparent 30%),
-        radial-gradient(circle at 90% 10%, rgba(220, 240, 255, 0.9), transparent 35%),
-        var(--bg);
+      line-height: 1.6;
     }
 
-    a {
-      color: var(--brand);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a:hover { text-decoration: underline; }
-
-    .wrap {
-      width: min(940px, calc(100% - 32px));
+    .container {
+      max-width: 960px;
       margin: 0 auto;
+      padding: 40px 20px 80px;
     }
 
-    header {
-      padding: 4rem 0 2.5rem;
+    .hero {
       text-align: center;
+      padding: 30px 0 20px;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.4rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+    .hero img {
+      width: 120px;
+      margin-bottom: 20px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
+      font-size: 52px;
+      line-height: 1;
+      color: var(--blue);
+      font-weight: 700;
     }
 
-    .hero-subtitle {
-      max-width: 680px;
-      margin: 1rem auto 0;
-      color: var(--muted);
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-    }
-
-    main {
-      padding: 1rem 0 4rem;
-    }
-
-    section {
-      margin: 1.25rem 0;
+    .tagline {
+      margin-top: 18px;
+      font-size: 20px;
+      color: var(--subtext);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .card {
       background: var(--card);
+      border-radius: 28px;
+      padding: 34px;
+      margin-top: 28px;
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: clamp(1.15rem, 3vw, 1.75rem);
-      box-shadow: 0 18px 50px rgba(31, 41, 55, 0.06);
-      backdrop-filter: blur(10px);
     }
 
     h2 {
-      margin: 0 0 0.75rem;
-      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 30px;
       line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1.05rem;
     }
 
     p {
-      margin: 0.5rem 0;
+      margin-top: 0;
+      color: #3f3f46;
+      font-size: 18px;
     }
 
-    .muted {
-      color: var(--muted);
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      color: #3f3f46;
+      font-size: 17px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 28px;
     }
 
-    .mini-card {
-      background: #fff;
+    figure {
+      margin: 0;
+      text-align: center;
+    }
+
+    .mock {
+      width: 100%;
+      border-radius: 24px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
     }
 
-    ul {
-      padding-left: 1.25rem;
-      margin: 0.5rem 0;
-    }
-
-    li {
-      margin: 0.35rem 0;
+    figcaption {
+      margin-top: 12px;
+      color: var(--subtext);
+      font-size: 15px;
     }
 
     .consent-box {
-      margin-top: 1rem;
-      border-radius: 18px;
-      background: var(--brand-soft);
-      border: 1px solid #dfe4ff;
-      padding: 1rem;
+      background: #f8f9ff;
+      border: 1px solid #dbe2ff;
+      border-radius: 20px;
+      padding: 22px;
+      margin-top: 28px;
     }
 
     blockquote {
-      margin: 0.75rem 0 0;
-      padding: 1rem;
-      border-radius: 16px;
-      background: #fff;
-      border-left: 4px solid var(--brand);
-      color: #2f3440;
+      margin: 12px 0;
+      padding-left: 16px;
+      border-left: 4px solid var(--blue);
+      color: #2f2f35;
+      font-size: 17px;
     }
 
-    .linkrow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-top: 1rem;
+    .muted {
+      color: var(--subtext);
+      font-size: 15px;
+      margin-bottom: 0;
     }
 
-    .btnlink {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0.55rem 0.9rem;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--brand);
-      font-weight: 700;
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--subtext);
+      font-size: 15px;
     }
 
-    footer {
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,0.72);
-      padding: 1.25rem 0;
-      color: var(--muted);
-      font-size: 0.95rem;
+    .footer a {
+      color: var(--blue);
+      text-decoration: none;
+      margin: 0 10px;
     }
 
-    footer .footer-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      align-items: center;
-    }
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 40px;
+      }
 
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.95em;
+      .tagline {
+        font-size: 18px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      h2 {
+        font-size: 26px;
+      }
+
+      p,
+      li {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <div class="badge">Support & SMS messaging information</div>
+
+  <div class="container">
+
+    <section class="hero">
       <h1>BrainMail</h1>
-      <p class="hero-subtitle">
-        BrainMail lets users save personal thoughts, reflections, and reminders, then receive their own saved entries back by text message over time.
+
+      <p class="tagline">
+        A private positivity journal that texts your own thoughts back to you.
       </p>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section>
-      <div class="card">
-        <h2>About BrainMail</h2>
-        <p>
-          BrainMail is a self-reflection app for saving thoughts worth remembering. Users can write short entries, affirmations, ideas, or moments of clarity and receive those saved entries back later as reminder text messages.
-        </p>
-        <p>
-          BrainMail only sends text messages to users who voluntarily provide their phone number and affirmatively consent during onboarding inside the app.
-        </p>
-        <p class="muted">
-          Use case category: <span class="mono">Customer Care / Productivity</span> — self-authored reminder messages.
-        </p>
-      </div>
     </section>
 
-    <section>
-      <div class="card">
-        <h2>How BrainMail works</h2>
+    <section class="card">
+      <h2>What is BrainMail?</h2>
 
-        <div class="grid">
-          <div class="mini-card">
-            <h3>1. Save entries</h3>
-            <p class="muted">
-              Users write and save their own personal entries inside the app.
-            </p>
-          </div>
+      <p>
+        BrainMail allows users to save affirmations, journal entries, moments of clarity,
+        reminders, and personal thoughts that resonate with them.
+      </p>
 
-          <div class="mini-card">
-            <h3>2. Receive texts</h3>
-            <p class="muted">
-              BrainMail can text saved entries back to the user based on their settings and activity.
-            </p>
-          </div>
+      <p>
+        The app periodically sends those saved entries back to the user through SMS
+        as supportive reminders from their past self.
+      </p>
 
-          <div class="mini-card">
-            <h3>3. Stay in control</h3>
-            <p class="muted">
-              Users can manage reminders in the app and can opt out of SMS messages at any time.
-            </p>
-          </div>
-        </div>
-      </div>
+      <p>
+        Users control their own reminder frequency, can remove reminders from their bank,
+        and may opt out of SMS messages at any time.
+      </p>
     </section>
 
-    <section id="sms-consent">
-      <div class="card">
-        <h2>SMS consent and opt-in</h2>
+    <section class="card">
+      <h2>Privacy & SMS Usage</h2>
 
-        <p>
-          BrainMail requires explicit in-app consent before sending SMS reminder messages.
-          During onboarding, users enter their phone number and must actively check an unchecked consent box before continuing.
-        </p>
-
-        <div class="consent-box">
-          <p><strong>Current in-app consent language:</strong></p>
-
-          <blockquote>
-            I agree to receive reminder text messages from BrainMail.
-            <br />
-            Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for support.
-          </blockquote>
-
-          <p class="muted">
-            The phone signup screen also states: “Your number is only used for verification and your BrainMail texts.”
-          </p>
-        </div>
-
-        <div class="grid" style="margin-top: 1rem;">
-          <div class="mini-card">
-            <h3>STOP</h3>
-            <p class="muted">
-              Replying <strong>STOP</strong> unsubscribes the user from BrainMail SMS reminder messages.
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>HELP</h3>
-            <p class="muted">
-              Replying <strong>HELP</strong> provides support information and messaging assistance.
-            </p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Message frequency</h3>
-            <p class="muted">
-              Message frequency varies based on the user’s settings, saved entries, subscription status, and activity.
-            </p>
-          </div>
-        </div>
-
-        <p class="muted" style="margin-top: 1rem;">
-          Message and data rates may apply. SMS delivery may depend on the user’s mobile carrier, device, and network availability.
-        </p>
-      </div>
+      <ul>
+        <li>Phone numbers are used only for verification and BrainMail reminder texts.</li>
+        <li>BrainMail does not sell user phone numbers.</li>
+        <li>Users must explicitly opt in before any SMS reminders are enabled.</li>
+        <li>Users can reply STOP at any time to opt out.</li>
+        <li>Users can reply HELP for support.</li>
+        <li>Message frequency varies based on user-selected settings.</li>
+      </ul>
     </section>
 
-    <section id="privacy-trust">
-      <div class="card">
-        <h2>Privacy and phone number use</h2>
+    <section class="card">
+      <h2>SMS Opt-In Verification</h2>
 
-        <p>
-          BrainMail uses phone numbers only for account verification and BrainMail text messages.
-        </p>
+      <p>
+        BrainMail requires explicit user consent before SMS reminder functionality
+        becomes available.
+      </p>
 
-        <ul>
-          <li>BrainMail does not sell phone numbers or personal information.</li>
-          <li>BrainMail does not send third-party advertising or marketing SMS campaigns.</li>
-          <li>Saved personal entries are private unless the user voluntarily posts content to the public Community section.</li>
-          <li>Users may delete their account in the app.</li>
-        </ul>
+      <p>
+        The consent checkbox is not preselected, and the Continue button remains
+        disabled until:
+      </p>
+
+      <ul>
+        <li>A valid phone number is entered</li>
+        <li>The user actively checks the SMS consent box</li>
+      </ul>
+
+      <div class="grid">
+
+        <figure>
+          <img
+            class="mock"
+            src="./IMG_0435.PNG"
+            alt="BrainMail signup screen with SMS consent checkbox unchecked and Continue button disabled"
+          />
+          <figcaption>
+            Consent unchecked — Continue disabled
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            class="mock"
+            src="./IMG_0436.PNG"
+            alt="BrainMail signup screen with SMS consent checkbox checked and Continue button enabled"
+          />
+          <figcaption>
+            Consent checked — Continue enabled
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <div class="consent-box">
+
+        <strong>In-app consent language:</strong>
+
+        <blockquote>
+          I agree to receive reminder text messages from BrainMail.
+          <br /><br />
+          Reply STOP to opt out, HELP for support.
+        </blockquote>
 
         <p class="muted">
-          For more information, please review the Privacy Policy and Terms of Service linked below.
+          The signup flow also states:
+          “Your number is only used for verification and your BrainMail texts.”
         </p>
+
       </div>
+
+      <ul style="margin-top: 28px;">
+        <li>Consent is collected directly within the app.</li>
+        <li>The checkbox defaults to unchecked.</li>
+        <li>The app prevents continuation until consent is actively provided.</li>
+        <li>Users may opt out at any time by replying STOP.</li>
+      </ul>
     </section>
 
-    <section id="community-guidelines">
-      <div class="card">
-        <h2>Community Guidelines</h2>
+    <section class="card">
+      <h2>Support</h2>
 
-        <p>
-          BrainMail includes an optional public Community section where users may share reflections with other users. To keep this space safe and welcoming, the following content is not allowed:
-        </p>
+      <p>
+        For support inquiries, contact:
+      </p>
 
-        <ul>
-          <li>Hate speech, slurs, or discrimination</li>
-          <li>Harassment, bullying, or threats</li>
-          <li>Sexually explicit or pornographic content</li>
-          <li>Violence or encouragement of harm</li>
-          <li>Spam, scams, or misleading content</li>
-          <li>Impersonation or posting on behalf of others</li>
-          <li>Content that violates applicable law or the rights of others</li>
-        </ul>
-
-        <p>
-          Users may report posts that violate these guidelines. Reported content may be reviewed and removed, and repeated or serious violations may result in account restriction or removal.
-        </p>
-      </div>
+      <p>
+        <strong>brainmailhelp@gmail.com</strong>
+      </p>
     </section>
 
-    <section id="contact-support">
-      <div class="card">
-        <h2>Contact & Support</h2>
-
-        <p>
-          If you have questions, need help, want to report an issue, or need assistance with BrainMail SMS messages, please contact support.
-        </p>
-
-        <p>
-          <strong>Email support:</strong>
-          <a href="mailto:brainmailhelp@gmail.com">brainmailhelp@gmail.com</a>
-        </p>
-
-        <p class="muted">
-          Please include your device type and a brief description of the issue when reaching out.
-        </p>
-      </div>
-    </section>
-
-    <section id="policies">
-      <div class="card">
-        <h2>Policies</h2>
-
-        <p>
-          For full details on data handling, user rights, subscriptions, account deletion, and messaging practices, please review:
-        </p>
-
-        <div class="linkrow">
-          <a class="btnlink" href="./privacy.html">Privacy Policy</a>
-          <a class="btnlink" href="./terms.html">Terms of Service</a>
-        </div>
-
-        <p class="muted">
-          These documents are also linked inside the BrainMail app during onboarding.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footer-row">
-        <span>&copy; <span id="y"></span> BrainMail</span>
-        <span aria-hidden="true">·</span>
-        <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-        <span aria-hidden="true">·</span>
-        <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-        <span aria-hidden="true">·</span>
-        <a href="#contact-support">Support</a>
-      </div>
+    <div class="footer">
+      <a href="privacy.html">Privacy Policy</a>
+      •
+      <a href="terms.html">Terms of Service</a>
     </div>
 
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
-  </footer>
+  </div>
+
 </body>
 </html>
-
