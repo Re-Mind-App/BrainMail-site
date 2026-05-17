@@ -1,193 +1,411 @@
+Here’s a refreshed `index.html` focused on BrainMail + SMS/App Review compliance.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ReMind – Text Reminder App</title>
-  <meta name="description" content="ReMind is a mobile app that lets you create and receive personal reminder texts you write for yourself." />
+
+  <title>BrainMail – Support & Messaging Information</title>
+  <meta name="description" content="BrainMail is a self-reflection app that lets users save personal entries and receive their own saved thoughts back by text message." />
+
   <style>
-    :root { --brand: #4a6cf7; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; color: #111; }
-    header { background: var(--brand); color: #fff; padding: 2.25rem 1rem; }
-    header .wrap { max-width: 920px; margin: 0 auto; }
-    h1 { margin: 0 0 .5rem; font-size: 2rem; }
-    main { max-width: 920px; margin: 0 auto; padding: 2rem 1rem; }
-    section { margin-bottom: 2rem; }
-    .card { border: 1px solid #eee; border-radius: 12px; padding: 1rem; background: #fff; }
-    blockquote { margin: .5rem 0; padding: .75rem 1rem; background: #f8f9ff; border-left: 4px solid var(--brand); }
-    footer { border-top: 1px solid #eee; background: #fafafa; padding: 1rem; }
-    footer .wrap { max-width: 920px; margin: 0 auto; font-size: .95rem; }
-    a { color: var(--brand); text-decoration: none; }
-    ul { padding-left: 1.25rem; }
-
-    /* Screenshot styling */
-    img.mock {
-      width: 100%;
-      max-width: 380px;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      display: block;
-      margin: 1rem auto;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    :root {
+      --brand: #3f4bb8;
+      --brand-soft: #eef1ff;
+      --text: #111827;
+      --muted: #5f6472;
+      --border: #e6e8f0;
+      --bg: #f7f9ff;
+      --card: rgba(255,255,255,0.92);
     }
-    figure { margin: 0; text-align: center; }
-    figcaption { text-align: center; color: #666; font-size: .85rem; margin-top: .35rem; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .muted { color: #666; font-size: .95rem; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    * { box-sizing: border-box; }
 
-    /* Link buttons */
-    .linkrow { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
-    .btnlink {
-      display: inline-block;
-      padding: .5rem .75rem;
-      border: 1px solid #e6e6e6;
-      border-radius: 8px;
-      background: #fff;
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255, 225, 245, 0.7), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(220, 240, 255, 0.9), transparent 35%),
+        var(--bg);
+    }
+
+    a {
+      color: var(--brand);
       text-decoration: none;
       font-weight: 600;
     }
-    .btnlink:hover { border-color: #d5d5d5; background: #f9f9f9; }
+
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(940px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 4rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-subtitle {
+      max-width: 680px;
+      margin: 1rem auto 0;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    }
+
+    main {
+      padding: 1rem 0 4rem;
+    }
+
+    section {
+      margin: 1.25rem 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(1.15rem, 3vw, 1.75rem);
+      box-shadow: 0 18px 50px rgba(31, 41, 55, 0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .mini-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1rem;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      margin: 0.5rem 0;
+    }
+
+    li {
+      margin: 0.35rem 0;
+    }
+
+    .consent-box {
+      margin-top: 1rem;
+      border-radius: 18px;
+      background: var(--brand-soft);
+      border: 1px solid #dfe4ff;
+      padding: 1rem;
+    }
+
+    blockquote {
+      margin: 0.75rem 0 0;
+      padding: 1rem;
+      border-radius: 16px;
+      background: #fff;
+      border-left: 4px solid var(--brand);
+      color: #2f3440;
+    }
+
+    .linkrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .btnlink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.72);
+      padding: 1.25rem 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95em;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="wrap">
-      <h1>ReMind</h1>
-      <p>Your moments of clarity — delivered by text.</p>
+      <div class="badge">Support & SMS messaging information</div>
+      <h1>BrainMail</h1>
+      <p class="hero-subtitle">
+        BrainMail lets users save personal thoughts, reflections, and reminders, then receive their own saved entries back by text message over time.
+      </p>
     </div>
   </header>
 
-  <main>
+  <main class="wrap">
     <section>
       <div class="card">
-        <h2>About ReMind</h2>
-        <p><strong>ReMind</strong> is a mobile app that helps you celebrate your moments of clarity. Users jot down their affirmations, epiphanies, and meaningful realizations as they come so that they can be reminded of them later via text message. Messages are only sent to users who voluntarily provide their phone number and consent during onboarding in the app.</p>
-        <p class="muted">Use case category: <span class="mono">Customer Care / Productivity</span> (self-authored reminders).</p>
+        <h2>About BrainMail</h2>
+        <p>
+          BrainMail is a self-reflection app for saving thoughts worth remembering. Users can write short entries, affirmations, ideas, or moments of clarity and receive those saved entries back later as reminder text messages.
+        </p>
+        <p>
+          BrainMail only sends text messages to users who voluntarily provide their phone number and affirmatively consent during onboarding inside the app.
+        </p>
+        <p class="muted">
+          Use case category: <span class="mono">Customer Care / Productivity</span> — self-authored reminder messages.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2>How BrainMail works</h2>
+
+        <div class="grid">
+          <div class="mini-card">
+            <h3>1. Save entries</h3>
+            <p class="muted">
+              Users write and save their own personal entries inside the app.
+            </p>
+          </div>
+
+          <div class="mini-card">
+            <h3>2. Receive texts</h3>
+            <p class="muted">
+              BrainMail can text saved entries back to the user based on their settings and activity.
+            </p>
+          </div>
+
+          <div class="mini-card">
+            <h3>3. Stay in control</h3>
+            <p class="muted">
+              Users can manage reminders in the app and can opt out of SMS messages at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sms-consent">
+      <div class="card">
+        <h2>SMS consent and opt-in</h2>
+
+        <p>
+          BrainMail requires explicit in-app consent before sending SMS reminder messages.
+          During onboarding, users enter their phone number and must actively check an unchecked consent box before continuing.
+        </p>
+
+        <div class="consent-box">
+          <p><strong>Current in-app consent language:</strong></p>
+
+          <blockquote>
+            I agree to receive reminder text messages from BrainMail.
+            <br />
+            Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for support.
+          </blockquote>
+
+          <p class="muted">
+            The phone signup screen also states: “Your number is only used for verification and your BrainMail texts.”
+          </p>
+        </div>
+
+        <div class="grid" style="margin-top: 1rem;">
+          <div class="mini-card">
+            <h3>STOP</h3>
+            <p class="muted">
+              Replying <strong>STOP</strong> unsubscribes the user from BrainMail SMS reminder messages.
+            </p>
+          </div>
+
+          <div class="mini-card">
+            <h3>HELP</h3>
+            <p class="muted">
+              Replying <strong>HELP</strong> provides support information and messaging assistance.
+            </p>
+          </div>
+
+          <div class="mini-card">
+            <h3>Message frequency</h3>
+            <p class="muted">
+              Message frequency varies based on the user’s settings, saved entries, subscription status, and activity.
+            </p>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top: 1rem;">
+          Message and data rates may apply. SMS delivery may depend on the user’s mobile carrier, device, and network availability.
+        </p>
+      </div>
+    </section>
+
+    <section id="privacy-trust">
+      <div class="card">
+        <h2>Privacy and phone number use</h2>
+
+        <p>
+          BrainMail uses phone numbers only for account verification and BrainMail text messages.
+        </p>
+
+        <ul>
+          <li>BrainMail does not sell phone numbers or personal information.</li>
+          <li>BrainMail does not send third-party advertising or marketing SMS campaigns.</li>
+          <li>Saved personal entries are private unless the user voluntarily posts content to the public Community section.</li>
+          <li>Users may delete their account in the app.</li>
+        </ul>
+
+        <p class="muted">
+          For more information, please review the Privacy Policy and Terms of Service linked below.
+        </p>
+      </div>
+    </section>
+
+    <section id="community-guidelines">
+      <div class="card">
+        <h2>Community Guidelines</h2>
+
+        <p>
+          BrainMail includes an optional public Community section where users may share reflections with other users. To keep this space safe and welcoming, the following content is not allowed:
+        </p>
+
+        <ul>
+          <li>Hate speech, slurs, or discrimination</li>
+          <li>Harassment, bullying, or threats</li>
+          <li>Sexually explicit or pornographic content</li>
+          <li>Violence or encouragement of harm</li>
+          <li>Spam, scams, or misleading content</li>
+          <li>Impersonation or posting on behalf of others</li>
+          <li>Content that violates applicable law or the rights of others</li>
+        </ul>
+
+        <p>
+          Users may report posts that violate these guidelines. Reported content may be reviewed and removed, and repeated or serious violations may result in account restriction or removal.
+        </p>
       </div>
     </section>
 
     <section id="contact-support">
-  <div class="card">
-    <h2>Contact & Support</h2>
-
-    <p>
-      If you have questions, need help, or want to report an issue related to
-      the ReMind app, you can contact our support team directly.
-    </p>
-
-    <p>
-      📧 <strong>Email support:</strong>
-      <a href="mailto:remindapphelp@gmail.com">remindapphelp@gmail.com</a>
-    </p>
-
-    <p class="muted">
-      We aim to respond to all support requests as quickly as possible.
-      Please include your device type and a brief description of the issue
-      when reaching out.
-    </p>
-  </div>
-</section>
-
-
-    <section id="community-guidelines">
-  <div class="card">
-    <h2>Community Guidelines</h2>
-
-    <p>
-      ReMind includes a public community space where users may share reflections
-      and messages with others. To keep this space safe and welcoming, the
-      following content is not allowed:
-    </p>
-
-    <ul>
-      <li>Hate speech, slurs, or discrimination</li>
-      <li>Harassment, bullying, or threats</li>
-      <li>Sexually explicit or pornographic content</li>
-      <li>Violence or encouragement of harm</li>
-      <li>Spam, scams, or misleading content</li>
-      <li>Impersonation or posting on behalf of others</li>
-    </ul>
-
-    <p>
-      Users can report posts that violate these guidelines. Reported content may
-      be reviewed and removed, and repeated violations may result in account
-      suspension or removal.
-    </p>
-
-    <p class="muted">
-      This community is intended for a general audience. While we cannot review
-      every post immediately, we take reports seriously and act as quickly as
-      possible.
-    </p>
-  </div>
-</section>
-
-
-    <section>
       <div class="card">
-        <h2>How Users Opt In (In-App)</h2>
-        <p>Users opt in during onboarding inside the ReMind app. They enter their phone number and agree to receive reminder texts. Users must actively select the consent checkbox before the “Agree to Continue” button becomes enabled. Below is the exact consent language used in the app:</p>
-        <blockquote>
-          By tapping <strong>Agree</strong>, you consent to receive reminder text messages from ReMind to the phone number you provide. Message &amp; data rates may apply. Message frequency varies based on your settings and activity. Reply <strong>STOP</strong> to opt out, or <strong>HELP</strong> for support.
-        </blockquote>
+        <h2>Contact & Support</h2>
 
-        <div class="grid">
-          <div>
-            <!-- Inline screenshot -->
-            <figure>
-              <img class="mock"
-                   src="https://github.com/user-attachments/assets/e31ec297-dded-40ac-b3bc-d5276d04f1b8"
-                   alt="ReMind onboarding screen — consent unchecked"
-                   loading="lazy" />
-              <figcaption>Onboarding — consent defaults to unchecked</figcaption>
-            </figure>
-          </div>
+        <p>
+          If you have questions, need help, want to report an issue, or need assistance with BrainMail SMS messages, please contact support.
+        </p>
 
-          <div>
-            <h3>Opt-Out &amp; Support Keywords</h3>
-            <ul>
-              <li><strong>STOP</strong>: Immediately stops all messages and confirms opt-out.</li>
-              <li><strong>HELP</strong>: Sends support contact and summary of program terms.</li>
-            </ul>
-            <p class="muted">Users can also manage participation from within the app at any time.</p>
-          </div>
-        </div>
+        <p>
+          <strong>Email support:</strong>
+          <a href="mailto:brainmailhelp@gmail.com">brainmailhelp@gmail.com</a>
+        </p>
+
+        <p class="muted">
+          Please include your device type and a brief description of the issue when reaching out.
+        </p>
       </div>
     </section>
 
-    <!-- Program Terms & Policies section -->
-    <section>
+    <section id="policies">
       <div class="card">
-        <h2>Program Terms &amp; Policies</h2>
-        <p>For full details on data handling, user rights, and messaging practices, please review the documents below:</p>
-        <div class="linkrow">
-<a href="./privacy.html">Privacy Policy</a>
-<a href="./terms.html">Terms of Service</a>
+        <h2>Policies</h2>
 
+        <p>
+          For full details on data handling, user rights, subscriptions, account deletion, and messaging practices, please review:
+        </p>
+
+        <div class="linkrow">
+          <a class="btnlink" href="./privacy.html">Privacy Policy</a>
+          <a class="btnlink" href="./terms.html">Terms of Service</a>
         </div>
-        <p class="muted">These links are the same documents referenced inside the ReMind app during onboarding.</p>
+
+        <p class="muted">
+          These documents are also linked inside the BrainMail app during onboarding.
+        </p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center;">
-        <span>&copy; <span id="y"></span> ReMind</span>
+      <div class="footer-row">
+        <span>&copy; <span id="y"></span> BrainMail</span>
         <span aria-hidden="true">·</span>
-        <!-- ✅ also switch footer links to relative -->
         <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         <span aria-hidden="true">·</span>
         <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+        <span aria-hidden="true">·</span>
+        <a href="#contact-support">Support</a>
       </div>
     </div>
+
     <script>
-      // Set current year in footer
-      document.getElementById('y').textContent = new Date().getFullYear();
+      document.getElementById("y").textContent = new Date().getFullYear();
     </script>
   </footer>
 </body>
 </html>
+```
